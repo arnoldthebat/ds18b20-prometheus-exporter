@@ -4,7 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/samkalnins/ds18b20-prometheus-exporter/temp"
+	"github.com/arnoldthebat/ds18b20-prometheus-exporter/temp"
 	"log"
 	"net/http"
 	"strings"
@@ -50,7 +50,7 @@ func main() {
 	flag.Parse()
 
 	// Main varz handler -- read and parse the temperatures on each request
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/metrics", func(w http.ResponseWriter, r *http.Request) {
 		readings, err := temp.FindAndReadTemperatures(*bus_dir)
 		if err != nil {
 			log.Printf("Error reading temperatures [%s]", err)
